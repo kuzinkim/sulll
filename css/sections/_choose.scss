@@ -1,0 +1,198 @@
+@use '../vars' as *;
+@use '../mixins' as *;
+
+.root-wrapper section.section.section_choose {
+    display: flex;
+    flex-direction: column;
+    padding: var(--section-gap) var(--page-padding);
+
+    .choose__title{
+        margin-bottom: 40px;
+
+        @include md-and-down {
+            margin-bottom: 24px;
+        }
+
+        @include sm {
+            margin-bottom: 24px;
+        }
+    }
+
+    .choose__list {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 32px;
+
+        @include sm {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        &-wrapper{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            gap: 12px;
+            padding: 40px 36px;
+            border-radius: 32px;
+            background-color: #F4FAFF;
+
+            img{
+                display: block;
+            }
+
+            @include md-and-down {
+                gap: 8px;
+                padding: 32px 24px;
+            }
+
+            @include sm {
+                padding: 30px 20px;
+            }
+
+            @include sm {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            & > figure {
+                display: contents;
+                position: relative;
+                z-index: 2;
+            }
+
+            &_row{
+                grid-column: 1/13;
+                flex-direction: row;
+                align-items: center;
+                gap: 32px;
+
+                @include md-and-down {
+                    flex-direction: column;
+                    gap: 24px;
+                }
+
+                .choose__item-image{
+                    margin-bottom: 0;
+                    flex-shrink: 0;
+                }
+            }
+
+            &:nth-child(1) {
+                grid-column: 1/7;
+                background-color: #F9F5FE;
+
+                @include sm {
+                    padding-right: 22px;
+                }
+
+                .choose__item-text{
+                    @include sm {
+                        padding-right: 7px;
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                grid-column: 7/13;
+
+                @include lg {
+                    padding-right: 37px;
+                }
+
+                .choose__item-image{
+                    @include lg {
+                        margin-bottom: 18px;
+                    }
+                }
+
+                .choose__item-text{
+                    @include sm {
+                        padding-right: 15px;
+                    }
+                }
+
+            }
+
+            &:nth-child(3) {
+                background-color: #FFF8F4;
+
+                .choose__list-wrapper{
+                    order: -1;
+                    max-width: 400px;
+
+                    @include md-and-down {
+                        order: 1;
+                        max-width: 100%;
+                    }
+                }
+
+                .choose__item-image{
+                    max-width: 808px;
+                    margin-left: auto;
+
+                    @include lg {
+                        max-width: 616px;
+                    }
+
+                    @include md-and-down {
+                        max-width: 652px;
+                        margin-left: 0;
+                    }
+                }
+            }
+
+            &:nth-child(4) {
+                .choose__item-title{
+                    @include sm {
+                        padding-right: 10px;
+                    }
+                }
+
+                .choose__item-text{
+                    @include sm {
+                        padding-right: 10px;
+                    }
+                }
+                .choose__item-image{
+                    max-width: 640px;
+
+                    @include lg {
+                        max-width: 557px;
+                    }
+
+                    @include md-and-down {
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    .choose__item-image{
+        margin-bottom: 20px;
+
+        @include md-and-down {
+            margin-bottom: 16px;
+        }
+    }
+
+    .choose__item-title {
+        font-family: $font-montserrat;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 36px;
+
+        @include md-and-down {
+            font-size: 20px;
+            line-height: 28px;
+        }
+    }
+}

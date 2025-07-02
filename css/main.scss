@@ -1,0 +1,25 @@
+@use 'vars' as *;
+@use 'mixins' as *;
+
+@use 'reset' as *;
+@use 'global' as *;
+@use 'typography' as *;
+@use 'utils' as *;
+
+@use 'modal' as *;
+
+@use 'sections/nav' as *;
+@use 'sections/hero' as *;
+@use 'sections/platform' as *;
+@use 'sections/newsletter' as *;
+@use 'sections/programm' as *;
+@use 'sections/chat' as *;
+@use 'sections/cards' as *;
+@use 'sections/app' as *;
+@use 'sections/cabinet' as *;
+@use 'sections/analytics' as *;
+@use 'sections/choose' as *;
+@use 'sections/calc' as *;
+@use 'sections/reviews' as *;
+@use 'sections/about' as *;
+@use 'sections/footer' as *;

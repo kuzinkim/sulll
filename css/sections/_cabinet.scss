@@ -1,0 +1,54 @@
+@use '../vars' as *;
+@use '../mixins' as *;
+
+.root-wrapper section.section_cabinet {
+    overflow: hidden;
+
+    .cabinet {
+        padding-top: 120px;
+        padding-bottom: 65px;
+        background-color: #F4FAFF;
+
+        @include md-and-down {
+            padding-top: 72px;
+            padding-bottom: 12px;
+        }
+
+        @include sm {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 30px;
+            padding-bottom: 72px;
+        }
+
+        &__head {
+            text-align: center;
+            max-width: 651px;
+            margin: 0 auto;
+
+            h2 {
+                margin-bottom: 16px;
+
+                @include md-and-down {
+                    margin-bottom: 12px;
+                }
+            }
+
+            @include sm {
+                padding: 0 var(--page-padding);
+            }
+        }
+
+        &__image{
+            margin-top: 40px;
+
+            @include md-and-down {
+                margin-top: 24px;
+            }
+
+            @include sm {
+                margin-top: 0;
+            }
+        }
+    }
+}

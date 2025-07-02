@@ -1,0 +1,20 @@
+@use 'vars' as *;
+@use 'mixins' as *;
+
+.root-wrapper {
+    button.button.button_action {
+        appearance: none;
+        border: none;
+        padding: 18px 40px;
+        font-family: $font-montserrat;
+        font-weight: bold;
+        background-color: $action;
+        color: $white;
+        border-radius: 40px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 300px;
+        user-select: none;
+        line-height: 1.5;
+    }
+}

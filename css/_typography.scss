@@ -1,0 +1,94 @@
+@use 'vars' as *;
+@use 'mixins' as *;
+
+@include font-face(Montserrat, '../fonts/Montserrat-Light', 300, normal, woff2);
+@include font-face(Montserrat, '../fonts/Montserrat-LightItalic', 300, italic, woff2);
+@include font-face(Montserrat, '../fonts/Montserrat-Regular', 400, normal, woff2);
+@include font-face(Montserrat, '../fonts/Montserrat-Italic', 400, italic, woff2);
+@include font-face(Montserrat, '../fonts/Montserrat-Medium', 500, normal, woff2);
+@include font-face(Montserrat, '../fonts/Montserrat-MediumItalic', 500, italic, woff2);
+@include font-face(Montserrat, '../fonts/Montserrat-SemiBold', 600, normal, woff2);
+@include font-face(Montserrat, '../fonts/Montserrat-SemiBoldItalic', 600, italic, woff2);
+@include font-face(Montserrat, '../fonts/Montserrat-Bold', 700, normal, woff2);
+@include font-face(Montserrat, '../fonts/Montserrat-BoldItalic', 700, italic, woff2);
+
+@include font-face('Open Sans', '../fonts/OpenSans-Light', 300, normal, woff2);
+@include font-face('Open Sans', '../fonts/OpenSans-LightItalic', 300, italic, woff2);
+@include font-face('Open Sans', '../fonts/OpenSans-Regular', 400, normal, woff2);
+@include font-face('Open Sans', '../fonts/OpenSans-Italic', 400, italic, woff2);
+@include font-face('Open Sans', '../fonts/OpenSans-Medium', 500, normal, woff2);
+@include font-face('Open Sans', '../fonts/OpenSans-MediumItalic', 500, italic, woff2);
+@include font-face('Open Sans', '../fonts/OpenSans-SemiBold', 600, normal, woff2);
+@include font-face('Open Sans', '../fonts/OpenSans-SemiBoldItalic', 600, italic, woff2);
+@include font-face('Open Sans', '../fonts/OpenSans-Bold', 700, normal, woff2);
+@include font-face('Open Sans', '../fonts/OpenSans-BoldItalic', 700, italic, woff2);
+
+.root-wrapper {
+    color: $black;
+    background-color: $white;
+
+    font-family: $font-open-sans;
+    font-size: 20px;
+    line-height: 1.5;
+
+    @include md-and-down {
+        font-size: 16px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: $font-montserrat;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 60px;
+        line-height: 72px;
+
+        @include md-and-down {
+            font-size: 30px;
+            line-height: 42px;
+        }
+    }
+
+    h2 {
+        font-size: 44px;
+        line-height: 54px;
+
+        @include md-and-down {
+            font-size: 30px;
+            line-height: 38px;
+        }
+
+        @include sm {
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
+
+    h3 {
+        font-size: 28px;
+        line-height: 36px;
+        font-weight: 700;
+
+        @include md-and-down {
+            font-size: 20px;
+            line-height: 28px;
+        }
+    }
+
+    a {
+        text-decoration-line: underline;
+        text-decoration-skip-ink: none;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 1px;
+    }
+
+    br.md-hidden{
+        @include md{
+            display: none;
+        }
+    }
+}

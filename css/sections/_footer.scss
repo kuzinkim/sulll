@@ -1,0 +1,260 @@
+@use '../vars' as *;
+@use '../mixins' as *;
+
+.root-wrapper section.section.section_footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:
+radial-gradient(54.41% 99.67% at -7.45% 110.67%, #9AC7FF 0%, rgba(200, 155, 253, 0.8) 45.17%, rgba(200, 155, 253, 0) 100%),
+radial-gradient(66.59% 113.53% at 95.76% 121.66%, #98EB6C 0%, #FED06F 45.17%, rgba(254, 208, 111, 0) 100%),
+radial-gradient(24.03% 56.17% at 28.39% 50%, rgba(252, 120, 194, 0.4) 0%, rgba(252, 121, 194, 0) 100%),
+linear-gradient(0deg, #FFFDF2, #FFFDF2);
+    color: $black;
+    padding: 135px 64px;
+    margin: 0 calc(max(var(--page-padding) - var(--section-padding), 16px)) 0;
+    border-radius: 32px;
+
+    --section-padding: 64px;
+
+    @include lg {
+        padding-top: 103px;
+        padding-bottom: 103px;
+    }
+
+    @include md {
+        --section-padding: 16px;
+    }
+    @include sm {
+        --section-padding: 0px;
+    }
+
+    @include md-and-down {
+        padding-top: 87px;
+        padding-bottom: 87px;
+        padding-left: 16px;
+        padding-right: 16px;
+        border-radius: 30px;
+    }
+
+    @include sm {
+        padding: 102px 16px 72px;
+        border-radius: 32px;
+    }
+
+    .section-footer{
+        display: flex;
+        gap: 198px;
+        align-items: center;
+
+        @include lg {
+            gap: 129px;
+        }
+
+        @include md {
+            gap: 66px;
+        }
+
+        @include sm {
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        h2{
+            margin-bottom: 16px;
+
+            @include md-and-down {
+                margin-bottom: 12px;
+            }
+        }
+
+        p{
+            margin-bottom: 36px;
+
+            @include sm {
+                margin-bottom: 30px;
+            }
+        }
+
+        .button{
+            max-width: 384px;
+        }
+
+        &__wrap{
+            flex: 1;
+
+            @include sm {
+                text-align: center;
+            }
+        }
+
+        &__image{
+            flex-shrink: 0;
+            margin-right: 162px;
+
+            @include lg {
+                margin-right: 39px;
+            }
+
+            @include md {
+                margin-right: 34px;
+            }
+
+            @include sm {
+                margin-right: 0;
+                order: -1;
+            }
+
+            &-wrap{
+                position: relative;
+                width: 304px;
+                height: 304px;
+                display: flex;
+                flex-direction: column;
+
+                @include md {
+                    width: 265px;
+                    height: 265px;
+                }
+
+                @include sm {
+                    width: 234px;
+                    height: 234px;
+                }
+
+                & > picture{
+                    margin: auto;
+                    position: relative;
+                    z-index: 1;
+                }
+
+                &::after{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    border-radius: 50%;
+                    border: 1px solid rgba(255, 255, 255, 1);
+                    transform: scale(0);
+                    opacity: 0;
+                    visibility: hidden;
+
+                    transition: opacity .5s ease, visibility .5s ease, transform 0.5s ease;
+                }
+            }
+        }
+
+        &__icon{
+            position: absolute;
+            z-index: 1;
+            width: 80px;
+
+            @include md{
+                width: 70px;
+            }
+
+            @include sm{
+                width: 61px;
+            }
+
+            &_1{
+                bottom: 120px;
+                left: -40px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.5s ease 1s, visibility 0.5s ease 1s;
+
+                @include md-and-down {
+                    bottom: 100px;
+                    left: -34px;
+                }
+
+                @include sm {
+                    bottom: 90px;
+                    left: -30px;
+                }
+            }
+
+            &_2{
+                top: -34px;
+                left: 110px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.5s ease 1.5s, visibility 0.5s ease 1.5s;
+
+                @include md-and-down {
+                    top: -34px;
+                    left: 94px;
+                }
+
+                @include sm {
+                    top: -30px;
+                    left: 87px;
+                }
+            }
+
+            &_3{
+                bottom: 120px;
+                right: -40px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.5s ease 2s, visibility 0.5s ease 2s;
+
+                @include md-and-down {
+                    bottom: 100px;
+                    right: -34px;
+                }
+
+                @include sm {
+                    bottom: 90px;
+                    right: -30px;
+                }
+            }
+
+            &_4{
+                bottom: -34px;
+                left: 110px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.5s ease 2.5s, visibility 0.5s ease 2.5s;
+
+                @include md-and-down {
+                    bottom: -34px;
+                    left: 94px;
+                }
+
+                @include sm {
+                    bottom: -30px;
+                    left: 87px;
+                }
+            }
+        }
+    }
+
+    &.is-animate{
+        .section-footer__image-wrap::after{
+            transform: scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .section-footer__icon_1{
+            opacity: 1;
+            visibility: visible;
+        }
+        .section-footer__icon_2{
+            opacity: 1;
+            visibility: visible;
+        }
+        .section-footer__icon_3{
+            opacity: 1;
+            visibility: visible;
+        }
+        .section-footer__icon_4{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}

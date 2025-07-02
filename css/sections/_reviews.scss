@@ -1,0 +1,118 @@
+@use '../vars' as *;
+@use '../mixins' as *;
+
+.root-wrapper section.section.section_reviews {
+    padding: var(--section-gap) var(--page-padding);
+    overflow: hidden;
+
+    @include md-and-down {
+        padding: 0;
+    }
+
+    .reviews{
+
+        &__title{
+            @include md-and-down {
+                padding: var(--section-gap) var(--page-padding) 0;
+            }
+        }
+
+        &__inner{
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            @include md-and-down {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 16px;
+                margin-top: 0;
+                padding: 24px var(--page-padding) var(--section-gap);
+                overflow: auto;
+            }
+        }
+
+        &__item{
+            box-shadow: 4px 4px 24px 0px rgba(210, 214, 255, 0.4);
+            border-radius: 20px;
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+
+            @include md-and-down {
+                width: 544px;
+                flex-shrink: 0;
+                padding: 30px 20px;
+            }
+
+            @include sm {
+                width: 328px;
+            }
+
+            &-video{
+                margin-bottom: 32px;
+
+                @include md-and-down {
+                    margin-bottom: 30px;
+                }
+
+                @include sm {
+                    margin-bottom: 24px;
+                }
+            }
+
+            &-title{
+                font-size: 28px;
+                line-height: 36px;
+                margin-bottom: 12px;
+                font-weight: 700;
+
+                @include md-and-down {
+                    font-size: 20px;
+                    line-height: 28px;
+                }
+
+                @include sm {
+                    margin-bottom: 8px;
+                }
+            }
+
+            &-text{
+                margin-bottom: 36px;
+
+                @include md-and-down {
+                    font-size: 16px;
+                    line-height: 24px;
+                    margin-bottom: 24px;
+                    max-width: 480px;
+                }
+
+                @include sm {
+                    margin-bottom: 20px;
+                }
+            }
+
+            &-link{
+                text-decoration: none;
+                margin-top: auto;
+
+                img{
+                    vertical-align: middle;
+                }
+            }
+
+            &:nth-child(1) {
+                @include sm {
+                    .reviews__item-text{
+                        padding-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

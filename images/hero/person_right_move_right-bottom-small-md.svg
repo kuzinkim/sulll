@@ -1,0 +1,26 @@
+<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="-4" y="-4" width="33" height="33"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(2px);clip-path:url(#bgblur_0_12253_3926_clip_path);height:100%;width:100%"></div></foreignObject><g filter="url(#filter0_ii_12253_3926)" data-figma-bg-blur-radius="4">
+<circle cx="12.5" cy="12.5" r="12.5" fill="white" fill-opacity="0.4" style="fill:white;fill-opacity:0.4;"/>
+</g>
+<path d="M7.32606 15.2467C8.83575 13.8565 10.1896 13.0137 12.356 13.0137C14.5224 13.0137 15.8762 13.8565 17.3859 15.2467C17.9232 15.7415 18.0967 16.485 17.9062 17.1403C17.7266 17.7582 17.0286 17.9808 16.3851 17.9808H8.32679C7.68328 17.9808 6.98533 17.7582 6.80573 17.1403C6.61525 16.485 6.7887 15.7415 7.32606 15.2467Z" fill="#FF698A" style="fill:#FF698A;fill:color(display-p3 1.0000 0.4118 0.5412);fill-opacity:1;"/>
+<path d="M12.3559 12.3187C13.9092 12.3187 15.1684 11.0678 15.1684 9.52472C15.1684 7.98167 13.9092 6.73077 12.3559 6.73077C10.8026 6.73077 9.54343 7.98167 9.54343 9.52472C9.54343 11.0678 10.8026 12.3187 12.3559 12.3187Z" fill="#FF698A" style="fill:#FF698A;fill:color(display-p3 1.0000 0.4118 0.5412);fill-opacity:1;"/>
+<defs>
+<filter id="filter0_ii_12253_3926" x="-4" y="-4" width="33" height="33" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_12253_3926"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="4"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+<feBlend mode="normal" in2="effect1_innerShadow_12253_3926" result="effect2_innerShadow_12253_3926"/>
+</filter>
+<clipPath id="bgblur_0_12253_3926_clip_path" transform="translate(4 4)"><circle cx="12.5" cy="12.5" r="12.5"/>
+</clipPath></defs>
+</svg>

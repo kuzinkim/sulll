@@ -1,0 +1,46 @@
+@use 'vars' as *;
+@use 'mixins' as *;
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --page-max-width: #{$lg-width}px;
+
+    @include lg {
+        --page-max-width: #{$md-width}px;
+    }
+
+    @include md {
+        --page-max-width: #{$sm-width}px;
+    }
+
+    --page-padding: calc((100% - var(--page-max-width)) / 2);
+    --page-padding-calc: calc((100% - 1440px) / 2);
+
+    @include lg {
+        --page-padding-calc: calc((100% - 1248px) / 2);
+    }
+
+    @include sm {
+        --page-max-width: 100%;
+        --page-padding: max(16px, min(4.5vw, 40px));
+    }
+}
+
+.root-wrapper {
+    display: flex;
+    flex-direction: column;
+    --section-gap: 144px;
+    padding-bottom: var(--section-gap);
+
+    @include md-and-down {
+        --section-gap: 96px;
+    }
+}

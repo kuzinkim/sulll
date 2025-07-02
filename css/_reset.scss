@@ -1,0 +1,65 @@
+@use 'vars' as *;
+
+.root-wrapper {
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    ul,
+    ol {
+        margin: 0;
+        padding: 0;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+    }
+
+    ul,
+    ol {
+        list-style-type: none;
+    }
+
+    figure,
+    figcaption {
+        margin: 0;
+        padding: 0;
+    }
+
+    button,
+    input,
+    textarea {
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    picture,
+    img {
+        user-select: none;
+    }
+
+    picture > img {
+        width: 100%;
+        display: block;
+    }
+
+    a {
+        color: $black;
+        text-decoration: none;
+
+        &:visited {
+            color: $black;
+        }
+
+        &:active {
+            color: $black;
+        }
+    }
+
+    hr {
+        margin: 0;
+        padding: 0;
+        border-style: none;
+        border-width: 0;
+    }
+}

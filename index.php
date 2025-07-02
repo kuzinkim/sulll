@@ -1,0 +1,1605 @@
+<?php
+
+declare(strict_types=1);
+
+use Bitrix\Main\Page\Asset;
+use RarusRu\WebForms\WebAnalytics;
+
+define('HIDE_H1', true);
+define('WIDE', true);
+
+require $_SERVER['DOCUMENT_ROOT'] . '/bitrix/header.php';
+
+/**
+ * @var CMain $APPLICATION
+ */
+$APPLICATION->SetPageProperty('HIDE_H1', 'Y');
+$APPLICATION->SetPageProperty('WIDE', 'Y');
+
+$APPLICATION->SetTitle('Система лояльности от 1С-Рарус');
+$APPLICATION->SetPageProperty(
+    'description',
+    'Сервис для повышения лояльности клиентов. Помогает повышать частоту продаж и увеличивать средний чек. 14 дней бесплатно. Тестируйте.'
+);
+$APPLICATION->SetPageProperty(
+    'keywords',
+    'система лояльности, программа лояльности, платформа лояльности'
+);
+
+Asset::getInstance()->addCss($APPLICATION->GetCurDir() . 'css/libs/swiper.css', true);
+Asset::getInstance()->addCss($APPLICATION->GetCurDir() . 'css/libs/nouislider.css', true);
+Asset::getInstance()->addCss($APPLICATION->GetCurDir() . 'css/main.min.css', true);
+Asset::getInstance()->addJs($APPLICATION->GetCurDir() . 'js/libs/swiper.js', true);
+Asset::getInstance()->addJs($APPLICATION->GetCurDir() . 'js/libs/nouislider.js', true);
+Asset::getInstance()->addJs($APPLICATION->GetCurDir() . 'js/main.js', true);
+Asset::getInstance()->addJs($APPLICATION->GetCurDir() . 'js/calc.js', true);
+?>
+
+<?php
+$APPLICATION->IncludeComponent(
+    'bitrix:form.result.new',
+    'retail-avtomatizaciya-roznichnoi-torgovli',
+    [
+        'SEF_MODE'               => 'N',
+        'WEB_FORM_ID'            => 2919,
+        'LIST_URL'               => '',
+        'EDIT_URL'               => '',
+        'SUCCESS_URL'            => '',
+        'CHAIN_ITEM_TEXT'        => '',
+        'CHAIN_ITEM_LINK'        => '',
+        'IGNORE_CUSTOM_TEMPLATE' => 'Y',
+        'USE_EXTENDED_ERRORS'    => 'Y',
+        'CACHE_TYPE'             => 'A',
+        'CACHE_TIME'             => '86400',
+        'SEF_FOLDER'             => '/',
+        'VARIABLE_ALIASES'       => [],
+        'FORM_TITLE'             => 'Заявка на подключение',
+        'FORM_ID'                => 'retail-avtomatizaciya-roznichnoi-torgovli',
+        'PRODUCT_SHOW_CAPTION'   => 'Y'
+    ]
+); ?>
+
+<article class="article">
+    <div class="root-wrapper">
+        <ul class="nav-header">
+            <li class="nav-header__item">
+                <a href="#cdp">
+                    <img src="images/head-cdp.svg" alt="CDP">
+                    <span>CDP</span>
+                </a>
+            </li>
+            <li class="nav-header__item">
+                <a href="#programm">
+                    <img src="images/head-programm.svg" alt="Программа лояльности">
+                    <span>Программа лояльности</span>
+                </a>
+            </li>
+            <li class="nav-header__item">
+                <a href="#bot">
+                    <img src="images/head-bot.svg" alt="Чат-бот">
+                    <span>Чат-бот</span>
+                </a>
+            </li>
+            <li class="nav-header__item">
+                <a href="#app">
+                    <img src="images/head-app.svg" alt="Мобильное приложение">
+                    <span>Мобильное приложение</span>
+                </a>
+            </li>
+            <li class="nav-header__item">
+                <a href="#calc">
+                    <img src="images/head-calc.svg" alt="Стоимость">
+                    <span>Стоимость</span>
+                </a>
+            </li>
+        </ul>
+        <section class="section section_hero" data-hero>
+            <div class="hero">
+                <div class="hero__wrapper">
+                    <div class="circle-wrapper">
+                        <div class="circle__fixed">
+                            <picture>
+                                <source media="(min-width: 1250px)" srcset="images/hero/heart.svg">
+                                <img src="images/hero/heart-md.svg" alt="">
+                            </picture>
+                        </div>
+                        <div id="circle">
+                            <div class="svg-icon-hero">
+                                <picture>
+                                    <source media="(min-width: 1250px)" srcset="images/hero/hero-gift.png 1x, images/hero/hero-gift@2x.png 2x">
+                                    <img src="images/hero/hero-gift.png" alt="">
+                                </picture>
+                            </div>
+                            <div class="svg-icon-hero">
+                                <picture>
+                                    <source media="(min-width: 1250px)" srcset="images/hero/hero-procent.png 1x, images/hero/hero-procent@2x.png 2x">
+                                    <img src="images/hero/hero-procent.png" alt="">
+                                </picture>
+                            </div>
+                            <div class="svg-icon-hero">
+                                <picture>
+                                    <source media="(min-width: 1250px)" srcset="images/hero/hero-mail.png 1x, images/hero/hero-mail@2x.png 2x">
+                                    <img src="images/hero/hero-mail.png" alt="">
+                                </picture>
+                            </div>
+                            <div class="svg-icon-hero">
+                                <picture>
+                                    <source media="(min-width: 1250px)" srcset="images/hero/hero-stock.png 1x, images/hero/hero-stock@2x.png 2x">
+                                    <img src="images/hero/hero-stock.png" alt="">
+                                </picture>
+                            </div>
+                            <div class="svg-icon-hero">
+                                <picture>
+                                    <source media="(min-width: 1250px)" srcset="images/hero/hero-ring.png 1x, images/hero/hero-ring@2x.png 2x">
+                                    <img src="images/hero/hero-ring.png" alt="">
+                                </picture>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero__icon hero__icon_1">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/person_xl.svg">
+                            <img src="images/hero/person_large-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/person-1-start.png 1x, images/hero/png/person-1-start@2x.png 2x">
+                            <source srcset="images/hero/png/person-1-start-md.png 1x, images/hero/png/person-1-start-md@2x.png 2x">
+                            <img src="images/hero/png/person-1-start-md.png" alt="">
+                        </picture>
+                    </div>
+                    <div class="hero__icon hero__icon_2">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/person_sm.svg">
+                            <img src="images/hero/png/person_small-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/person-11-start.png 1x, images/hero/png/person-11-start@2x.png 2x">
+                            <source srcset="images/hero/png/person-11-start-md.png 1x, images/hero/png/person-11-start-md@2x.png 2x">
+                            <img src="images/hero/png/person-11-start-md.png" alt="">
+                        </picture>
+                    </div>
+                    <div class="hero__icon hero__icon_3">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/check.svg">
+                            <img src="images/hero/check-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/check-1-start.png 1x, images/hero/png/check-1-start@2x.png 2x">
+                            <source srcset="images/hero/png/check-1-start-md.png 1x, images/hero/png/check-1-start-md@2x.png 2x">
+                            <img src="images/hero/png/check-1-start-md.png" alt="">
+                        </picture>
+                    </div>
+                    <div class="hero__icon hero__icon_4">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/person_md.svg">
+                            <img src="images/hero/png/person_large-md.png" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/person-21-start.png 1x, images/hero/png/person-21-start@2x.png 2x">
+                            <source srcset="images/hero/png/person-21-start-md.png 1x, images/hero/png/person-21-start-md@2x.png 2x">
+                            <img src="images/hero/png/person-21-start-md.png" alt="">
+                        </picture>
+                    </div>
+                    <div class="hero__icon hero__icon_5">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/person_sm.svg">
+                            <img src="images/hero/person_small-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/person-22-start.png 1x, images/hero/png/person-22-start@2x.png 2x">
+                            <source srcset="images/hero/png/person-22-start-md.png 1x, images/hero/png/person-22-start-md@2x.png 2x">
+                            <img src="images/hero/png/person-22-start-md.png" alt="">
+                        </picture>
+                    </div>
+                    <div class="hero__icon hero__icon_6">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/buy.svg">
+                            <img src="images/hero/buy-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/buy-start.png 1x, images/hero/png/buy-start@2x.png 2x">
+                            <source srcset="images/hero/png/buy-start-md.png 1x, images/hero/png/buy-start-md@2x.png 2x">
+                            <img src="images/hero/png/buy-start-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__icon hidden hero__icon_7">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/person_left_move_left.svg">
+                            <img src="images/hero/person_left_move_left-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/person-1-animate-left.png 1x, images/hero/png/person-1-animate-left@2x.png 2x">
+                            <source srcset="images/hero/png/person-1-animate-left-md.png 1x, images/hero/png/person-1-animate-left-md@2x.png 2x">
+                            <img src="images/hero/png/person-1-animate-left-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__icon hidden hero__icon_8">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/person_left_move_right.svg">
+                            <img src="images/hero/person_left_move_right-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/person-1-animate-bottom.png 1x, images/hero/png/person-1-animate-bottom@2x.png 2x">
+                            <source srcset="images/hero/png/person-1-animate-bottom-md.png 1x, images/hero/png/person-1-animate-bottom-md@2x.png 2x">
+                            <img src="images/hero/png/person-1-animate-bottom-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__icon hidden hero__icon_9">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/person_left_move_top.svg">
+                            <img src="images/hero/person_left_move_top-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/person-11-animate-top.png 1x, images/hero/png/person-11-animate-top@2x.png 2x">
+                            <source srcset="images/hero/png/person-11-animate-top-md.png 1x, images/hero/png/person-11-animate-top-md@2x.png 2x">
+                            <img src="images/hero/png/person-11-animate-top-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__icon hidden hero__icon_10">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/check_left_move_left.svg">
+                            <img src="images/hero/check_left_move_left-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/check-1-animate-left.png 1x, images/hero/png/check-1-animate-left@2x.png 2x">
+                            <source srcset="images/hero/png/check-1-animate-left-md.png 1x, images/hero/png/check-1-animate-left-md@2x.png 2x">
+                            <img src="images/hero/png/check-1-animate-left-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__icon hidden hero__icon_11">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/check_left_move_right.svg">
+                            <img src="images/hero/check_left_move_right-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/check-1-animate-right.png 1x, images/hero/png/check-1-animate-right.png 2x">
+                            <source srcset="images/hero/png/check-1-animate-right-md.png 1x, images/hero/png/check-1-animate-right-md@2x.png 2x">
+                            <img src="images/hero/png/check-1-animate-right-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__icon hidden hero__icon_12">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)"
+                                srcset="images/hero/person_right_move_right-bottom-small.svg">
+                            <img src="images/hero/person_right_move_right-bottom-small-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/person-21-animate-small.png 1x, images/hero/png/person-21-animate-small@2x.png 2x">
+                            <source srcset="images/hero/png/person-21-animate-small-md.png 1x, images/hero/png/person-21-animate-small-md@2x.png 2x">
+                            <img src="images/hero/png/person-21-animate-small-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__icon hidden hero__icon_13">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)"
+                                srcset="images/hero/person_right_move_right-bottom.svg">
+                            <img src="images/hero/person_right_move_right-bottom-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/person-21-animate-middle.png 1x, images/hero/png/person-21-animate-middle@2x.png 2x">
+                            <source srcset="images/hero/png/person-21-animate-middle-md.png 1x, images/hero/png/person-21-animate-middle-md@2x.png 2x">
+                            <img src="images/hero/png/person-21-animate-middle-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__icon hidden hero__icon_14">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)"
+                                srcset="images/hero/person_right_move_right-top.svg">
+                            <img src="images/hero/person_right_move_right-top-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/person-22-animate-top.png 1x, images/hero/png/person-22-animate-top@2x.png 2x">
+                            <source srcset="images/hero/png/person-22-animate-top-md.png 1x, images/hero/png/person-22-animate-top-md@2x.png 2x">
+                            <img src="images/hero/png/person-22-animate-top-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__icon hidden hero__icon_15">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/buy_right_move_right.svg">
+                            <img src="images/hero/buy_right_move_right-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/buy-animate-right.png 1x, images/hero/png/buy-animate-right@2x.png 2x">
+                            <source srcset="images/hero/png/buy-animate-right-md.png 1x, images/hero/png/buy-animate-right-md@2x.png 2x">
+                            <img src="images/hero/png/buy-animate-right-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__icon hidden hero__icon_16">
+                        <!-- <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/buy_right_move_left.svg">
+                            <img src="images/hero/buy_right_move_left-md.svg" alt="">
+                        </picture> -->
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/hero/png/buy-animate-left.png 1x, images/hero/png/buy-animate-left@2x.png 2x">
+                            <source srcset="images/hero/png/buy-animate-left-md.png 1x, images/hero/png/buy-animate-left-md@2x.png 2x">
+                            <img src="images/hero/png/buy-animate-left-md.png" alt="">
+                        </picture>
+                    </div>
+
+                    <div class="hero__banner">
+                        <img src="images/hero/banner-sm.svg" alt="Два модуля в камере">
+                    </div>
+                </div>
+                <div class="hero__head">
+                    <h1 class="hero__title">1С-&#8288;Рарус: Система управления лояльностью</h1>
+                    <p class="hero__text">Платформа, которая&nbsp;помогает повышать лояльность клиентов, увеличивать
+                        средний&nbsp;чек и&nbsp;частоту продаж.</p>
+                    <button class="button button_action hero__button" data-toggle="modal"
+                        data-event="rarus-ru_1c-net_audit-it-sistem-1c_footer-callback"
+                        data-product="Аудит ИТ‑систем для 1С" data-target="#f-audit-it-system-1c">Оставить
+                        заявку</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_platform" id="cdp">
+            <h2 class="choose__title">Платформа клиентских данных</h2>
+
+            <div class="platform">
+                <div class="platform__slider swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide platform__slide">
+                            <h3>Единый профиль клиента</h3>
+                            <p>Собирайте информацию о&nbsp;клиентах с&nbsp;кассовых программ, сайта, мобильного
+                                приложения и&nbsp;других&nbsp;систем в&nbsp;единый профиль. Имя, контактные данные,
+                                история покупок&nbsp;&mdash; все в&nbsp;одном месте.</p>
+                            <div class="platform__slide-img">
+                                <picture>
+                                    <source media="(min-width: 1440px)"
+                                        srcset="images/platform-slide-1.png 1x, images/platform-slide-1@2x.png 2x">
+                                    <source media="(min-width: 1250px)"
+                                        srcset="images/platform-slide-1-lg.png 1x, images/platform-slide-1-lg@2x.png 2x">
+                                    <source media="(min-width: 768px)"
+                                        srcset="images/platform-slide-1-md.png 1x, images/platform-slide-1-md@2x.png 2x">
+                                    <source
+                                        srcset="images/platform-slide-1-sm.png 1x, images/platform-slide-1-sm@2x.png 2x">
+                                    <img src="platform-slide-1.png" alt="Два модуля в камере">
+                                </picture>
+                            </div>
+                        </div>
+                        <div class="swiper-slide platform__slide">
+                            <h3>Сегментация клиентов</h3>
+                            <p>Разбивайте клиентов по&nbsp;персональным данным, поведению и&nbsp;предпочтениям.
+                                Предлагайте&nbsp;каждому сегменту клиентов&nbsp;то, что им&nbsp;будет интересно.</p>
+                            <div class="platform__slide-img platform__slide-img_mobile">
+                                <picture>
+                                    <source media="(min-width: 1440px)"
+                                        srcset="images/slide-team.png 1x, images/slide-team.png 2x">
+                                    <source media="(min-width: 1250px)"
+                                        srcset="images/slide-team-lg.png 1x, images/slide-team-lg@2x.png 2x">
+                                    <source media="(min-width: 768px)"
+                                        srcset="images/slide-team-md.png 1x, images/slide-team-md@2x.png 2x">
+                                    <source srcset="images/slide-team-sm.png 1x, images/slide-team-sm@2x.png 2x">
+                                    <img src="images/slide-team.png" alt="Два модуля в камере">
+                                </picture>
+                            </div>
+                            <div class="platform__segment">
+                                <div class="platform__segment-img step step_1">
+                                    <picture>
+                                        <source media="(min-width: 1440px)"
+                                            srcset="images/slide-team.png 1x, images/slide-team@2x.png 2x">
+                                        <source media="(min-width: 1250px)"
+                                            srcset="images/slide-team-lg.png 1x, images/slide-team-lg@2x.png 2x">
+                                        <source
+                                            srcset="images/slide-team-md.png 1x, images/slide-team-md@2x.png 2x">
+                                        <img src="images/slide-team.png" alt="Два модуля в камере">
+                                    </picture>
+                                </div>
+                                <div class="platform__segment-img step step_2">
+                                    <picture>
+                                        <source media="(min-width: 1440px)"
+                                            srcset="images/slide-filter.png 1x, images/slide-filter@2x.png 2x">
+                                        <source media="(min-width: 1250px)"
+                                            srcset="images/slide-filter-lg.png 1x, images/slide-filter-lg@2x.png 2x">
+                                        <source
+                                            srcset="images/slide-filter-md.png 1x, images/slide-filter-md@2x.png 2x">
+                                        <img src="images/slide-filter.png" alt="Два модуля в камере">
+                                    </picture>
+                                </div>
+                                <div class="platform__segment-img step step_3">
+                                    <picture>
+                                        <source media="(min-width: 1440px)"
+                                            srcset="images/slide-segment.png 1x, images/slide-segment@2x.png 2x">
+                                        <source media="(min-width: 1250px)"
+                                            srcset="images/slide-segment-lg.png 1x, images/slide-segment-lg@2x.png 2x">
+                                        <source
+                                            srcset="images/slide-segment-md.png 1x, images/slide-segment-md@2x.png 2x">
+                                        <img src="images/slide-segment.png" alt="Два модуля в камере">
+                                    </picture>
+                                </div>
+                                <div class="platform__segment-img step step_4">
+                                    <picture>
+                                        <source media="(min-width: 1440px)"
+                                            srcset="images/slide-mail.png 1x, images/slide-mail@2x.png 2x">
+                                        <source media="(min-width: 1250px)"
+                                            srcset="images/slide-mail-lg.png 1x, images/slide-mail-lg@2x.png 2x">
+                                        <source
+                                            srcset="images/slide-mail-md.png 1x, images/slide-mail-md@2x.png 2x">
+                                        <img src="images/slide-mail.png" alt="Два модуля в камере">
+                                    </picture>
+                                </div>
+                                <div class="platform__segment-img step step_5">
+                                    <picture>
+                                        <source media="(min-width: 1440px)"
+                                            srcset="images/slide-sms.png 1x, images/slide-sms@2x.png 2x">
+                                        <source media="(min-width: 1250px)"
+                                            srcset="images/slide-sms-lg.png 1x, images/slide-sms-lg@2x.png 2x">
+                                        <source srcset="images/slide-sms-md.png 1x, images/slide-sms-md@2x.png 2x">
+                                        <img src="images/slide-sms.png" alt="Два модуля в камере">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide platform__slide">
+                            <h3>Сценарии</h3>
+                            <p>Настраивайте уникальные сценарии под разные сегменты. Вовлекайте новых покупателей
+                                в&nbsp;программу лояльности, возвращайте потерянных клиентов, увеличивайте продажи
+                                в&nbsp;дни рождения.</p>
+                            <div class="platform__slide-img platform__slide-img_mobile">
+                                <picture>
+                                    <source media="(min-width: 1440px)"
+                                        srcset="images/slide-scenariy.png 1x, images/slide-scenariy.png 2x">
+                                    <source media="(min-width: 1250px)"
+                                        srcset="images/slide-scenariy-lg.png 1x, images/slide-scenariy-lg@2x.png 2x">
+                                    <source media="(min-width: 768px)"
+                                        srcset="images/slide-scenariy-md.png 1x, images/slide-scenariy-md@2x.png 2x">
+                                    <source
+                                        srcset="images/slide-scenariy-sm.png 1x, images/slide-scenariy-sm@2x.png 2x">
+                                    <img src="images/slide-scenariy.png" alt="Два модуля в камере">
+                                </picture>
+                            </div>
+                            <div class="platform__script">
+                                <div class="platform__script-img step step_1">
+                                    <picture>
+                                        <source media="(min-width: 1440px)"
+                                            srcset="images/slide-script.png 1x, images/slide-script@2x.png 2x">
+                                        <source media="(min-width: 1250px)"
+                                            srcset="images/slide-script-lg.png 1x, images/slide-script-lg@2x.png 2x">
+                                        <source
+                                            srcset="images/slide-script-md.png 1x, images/slide-script-md@2x.png 2x">
+                                        <img src="images/slide-script1.png" alt="Два модуля в камере">
+                                    </picture>
+                                </div>
+                                <div class="platform__script-img step step_2">
+                                    <picture>
+                                        <source media="(min-width: 1440px)"
+                                            srcset="images/slide-script1.png 1x, images/slide-script1@2x.png 2x">
+                                        <source media="(min-width: 1250px)"
+                                            srcset="images/slide-script1-lg.png 1x, images/slide-script1-lg@2x.png 2x">
+                                        <source
+                                            srcset="images/slide-script1-md.png 1x, images/slide-script1-md@2x.png 2x">
+                                        <img src="images/slide-script1.png" alt="Два модуля в камере">
+                                    </picture>
+                                </div>
+                                <div class="platform__script-img step step_3">
+                                    <picture>
+                                        <source media="(min-width: 1440px)"
+                                            srcset="images/slide-script2.png 1x, images/slide-script2@2x.png 2x">
+                                        <source media="(min-width: 1250px)"
+                                            srcset="images/slide-script2-lg.png 1x, images/slide-script2-lg@2x.png 2x">
+                                        <source
+                                            srcset="images/slide-script2-md.png 1x, images/slide-script2-md@2x.png 2x">
+                                        <img src="images/slide-script2.png" alt="Два модуля в камере">
+                                    </picture>
+                                </div>
+                                <div class="platform__script-img step step_4">
+                                    <picture>
+                                        <source media="(min-width: 1440px)"
+                                            srcset="images/slide-script3.png 1x, images/slide-script3@2x.png 2x">
+                                        <source media="(min-width: 1250px)"
+                                            srcset="images/slide-script3-lg.png 1x, images/slide-script3-lg@2x.png 2x">
+                                        <source
+                                            srcset="images/slide-script3-md.png 1x, images/slide-script3-md@2x.png 2x">
+                                        <img src="images/slide-script3.png" alt="Два модуля в камере">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_newsletter" data-animate-1>
+            <div class="newsletter">
+                <div class="newsletter__wrapper">
+                    <div class="newsletter__icons">
+                        <!-- <picture>
+                            <source srcset="images/email-icons.svg">
+                            <img src="images/email-icons.svg" alt="Качественное изображение">
+                        </picture> -->
+
+                        <picture>
+                            <source srcset="images/email-icons.png 1x, images/email-icons@2x.png 2x">
+                            <img src="images/email-icons.png" alt="Качественное изображение">
+                        </picture>
+                    </div>
+                    <h2 class="newsletter__title">Рассылки</h2>
+                    <p>Отправляйте рекламные сообщения через любые популярные каналы коммуникации. Ваши клиенты
+                        всегда&nbsp;будут в&nbsp;курсе новинок и&nbsp;акций,
+                        где&nbsp;бы&nbsp;они&nbsp;не&nbsp;находились.</p>
+                </div>
+                <div class="newsletter__image">
+                    <picture>
+                        <source media="(min-width: 1250px)"
+                            srcset="images/iphone-1.png 1x, images/iphone-1@2x.png 2x">
+                        <source srcset="images/iphone-1-md.png 1x, images/iphone-1-md@2x.png 2x">
+                        <img src="images/iphone-1.png" alt="Два модуля в камере">
+                    </picture>
+                    <div class="newsletter__push">
+                        <div class="newsletter__push-item">
+                            <picture>
+                                <source media="(min-width: 1250px)"
+                                    srcset="images/push-1.png 1x, images/push-1@2x.png 2x">
+                                <source srcset="images/push-1-sm.png 1x, images/push-1-sm@2x.png 2x">
+                                <img src="images/push-1.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="newsletter__push-item">
+                            <picture>
+                                <source media="(min-width: 1250px)"
+                                    srcset="images/push-2.png 1x, images/push-2@2x.png 2x">
+                                <source srcset="images/push-2-sm.png 1x, images/push-2-sm@2x.png 2x">
+                                <img src="images/push-2.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="newsletter__push-item">
+                            <picture>
+                                <source media="(min-width: 1250px)"
+                                    srcset="images/push-3.png 1x, images/push-3@2x.png 2x">
+                                <source srcset="images/push-3-sm.png 1x, images/push-3-sm@2x.png 2x">
+                                <img src="images/push-3.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="newsletter__push-item">
+                            <picture>
+                                <source media="(min-width: 1250px)"
+                                    srcset="images/push-4.png 1x, images/push-4@2x.png 2x">
+                                <source srcset="images/push-4-sm.png 1x, images/push-4-sm@2x.png 2x">
+                                <img src="images/push-4.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_programm scroll-block1" id="programm">
+            <div class="programm">
+                <div class="programm__head">
+                    <h2 class="programm__title">Программа лояльности</h2>
+                    <p>Используйте и&nbsp;комбинируйте различные механики для&nbsp;достижения наилучшего результата.
+                    </p>
+                </div>
+                <div class="programm__wrapper">
+                    <div class="programm__count">
+                        <div class="programm__count-wrap">
+                            <h3 class="programm__count-title">1 000+</h3>
+                            <p class="programm__count-text">комбинаций механик</p>
+                        </div>
+                    </div>
+                    <div class="programm__inner slider-mobile slider-mobile_1">
+                        <div class="programm__row row1">
+                            <div class="programm__item programm__item_lg"></div>
+                            <div class="programm__item">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_1.svg" alt="Дисконтная"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_1.png 1x, images/programm/p_1@2x.png 2x">
+                                        <img src="images/programm/p_1.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Дисконтная</h3>
+                                <p class="programm__text">Предлагайте фиксированные скидки.</p>
+                            </div>
+                            <div class="programm__item">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_2.svg" alt="Бонусная"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_2.png 1x, images/programm/p_2@2x.png 2x">
+                                        <img src="images/programm/p_2.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Бонусная</h3>
+                                <p class="programm__text">Начисляйте бонусы за&nbsp;покупки.</p>
+                            </div>
+                            <div class="programm__item">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_3.svg" alt="Многоуровневая"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_3.png 1x, images/programm/p_3@2x.png 2x">
+                                        <img src="images/programm/p_3.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Многоуровневая</h3>
+                                <p class="programm__text">Сегментируйте клиентов по&nbsp;покупкам.</p>
+                            </div>
+                            <div class="programm__item programm__item_hidden">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_4.svg" alt="Акции"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_4.png 1x, images/programm/p_4@2x.png 2x">
+                                        <img src="images/programm/p_4.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Акции</h3>
+                                <p class="programm__text">Создавайте и&nbsp;комбинируйте акции.</p>
+                            </div>
+                            <div class="programm__item programm__item_md"></div>
+                        </div>
+                        <div class="programm__row row2">
+                            <div class="programm__item programm__item_lg"></div>
+                            <div class="programm__item programm__item_mobile">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_4.svg" alt="Акции"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_4.png 1x, images/programm/p_4@2x.png 2x">
+                                        <img src="images/programm/p_4.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Акции</h3>
+                                <p class="programm__text">Создавайте и&nbsp;комбинируйте акции.</p>
+                            </div>
+                            <div class="programm__item">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_5.svg" alt="Подарочные сертификаты"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_5.png 1x, images/programm/p_5@2x.png 2x">
+                                        <img src="images/programm/p_5.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Подарочные сертификаты</h3>
+                                <p class="programm__text">Предлагайте купить подарочный сертификат.</p>
+                            </div>
+                            <div class="programm__item programm__item_stat">
+                                <div class="programm__item-wrap">
+                                    <h3 class="programm__title">1 000+</h3>
+                                    <p class="programm__text">комбинаций механик</p>
+                                </div>
+                            </div>
+                            <div class="programm__item">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_6.svg" alt="Любимые товары"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_6.png 1x, images/programm/p_6@2x.png 2x">
+                                        <img src="images/programm/p_6.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Любимые товары</h3>
+                                <p class="programm__text">Предлагайте выбрать любимые товары со&nbsp;скидкой.</p>
+                            </div>
+                            <div class="programm__item programm__item_lg"></div>
+                        </div>
+                        <div class="programm__row row3">
+                            <div class="programm__item programm__item_lg"></div>
+                            <div class="programm__item">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_7.svg" alt="Промокоды"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_7.png 1x, images/programm/p_7@2x.png 2x">
+                                        <img src="images/programm/p_7.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Промокоды</h3>
+                                <p class="programm__text">Рассылайте подарочные промокоды.</p>
+                            </div>
+                            <div class="programm__item">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_8.svg" alt="Реферальная программа"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_8.png 1x, images/programm/p_8@2x.png 2x">
+                                        <img src="images/programm/p_8.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Реферальная программа</h3>
+                                <p class="programm__text">Поощряйте рекомендации.</p>
+                            </div>
+                            <div class="programm__item">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_9.svg" alt="Товары в подарок"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_9.png 1x, images/programm/p_9@2x.png 2x">
+                                        <img src="images/programm/p_9.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Товары в подарок</h3>
+                                <p class="programm__text">Дарите подарки за&nbsp;ряд покупок.</p>
+                            </div>
+                            <div class="programm__item">
+                                <div class="programm__icon">
+                                    <!-- <img src="images/prg_10.svg" alt="Абонементы"> -->
+                                    <picture>
+                                        <source srcset="images/programm/p_10.png 1x, images/programm/p_10@2x.png 2x">
+                                        <img src="images/programm/p_10.png" alt="Качественное изображение">
+                                    </picture>
+                                </div>
+                                <h3 class="programm__title">Абонементы</h3>
+                                <p class="programm__text">Продавайте товары по&nbsp;подписке.</p>
+                            </div>
+                            <div class="programm__item programm__item_lg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_chat" id="bot" data-animate-2>
+            <div class="chat">
+                <div class="chat__image">
+                    <picture>
+                        <source media="(min-width: 1250px)"
+                            srcset="images/iphone-2.png 1x, images/iphone-2@2x.png 2x">
+                        <source srcset="images/iphone-2-md.png 1x, images/iphone-2-md@2x.png 2x">
+                        <img src="images/iphone-2.png" alt="Два модуля в камере">
+                    </picture>
+                    <div class="chat__image-answer">
+                        <picture>
+                            <source media="(min-width: 1250px)"
+                                srcset="images/tg-chat.png 1x, images/tg-chat@2x.png 2x">
+                            <source srcset="images/tg-chat-md.png 1x, images/tg-chat-md@2x.png 2x">
+                            <img src="images/tg-chat.png" alt="Два модуля в камере">
+                        </picture>
+                    </div>
+                </div>
+                <div class="chat__wrapper">
+                    <h2 class="chat__title">Чат-&#8288;бот в&nbsp;Telegram</h2>
+                    <p>Регистрируйте новых клиентов в&nbsp;программе лояльности. Информируйте о&nbsp;проходящих
+                        акциях и&nbsp;новинках товаров. Отображайте информацию о&nbsp;текущем статусе клиента.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_cards" data-animate-3>
+            <div class="cards">
+                <div class="cards__head">
+                    <h2 class="cards__title">Электронные карты</h2>
+                    <p>Отличная альтернатива пластиковым картам. Карты Apple Wallet и&nbsp;Google Pay, которые
+                        всегда в&nbsp;кармане у&nbsp;клиентов.</p>
+                </div>
+                <div class="cards__inner">
+                    <div class="cards__row">
+                        <div class="cards__item">
+                            <picture>
+                                <source srcset="images/card-1.png 1x, images/card-1@2x.png 2x">
+                                <img src="images/card-1.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="cards__item">
+                            <picture>
+                                <source srcset="images/card-2.png 1x, images/card-2@2x.png 2x">
+                                <img src="images/card-2.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="cards__item">
+                            <picture>
+                                <source srcset="images/card-3.png 1x, images/card-3@2x.png 2x">
+                                <img src="images/card-3.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="cards__item">
+                            <picture>
+                                <source srcset="images/card-4.png 1x, images/card-4@2x.png 2x">
+                                <img src="images/card-4.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="cards__row">
+                        <div class="cards__item">
+                            <picture>
+                                <source srcset="images/card-5.png 1x, images/card-5@2x.png 2x">
+                                <img src="images/card-5.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="cards__item">
+                            <picture>
+                                <source srcset="images/card-6.png 1x, images/card-6@2x.png 2x">
+                                <img src="images/card-6.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="cards__item">
+                            <picture>
+                                <source srcset="images/card-7.png 1x, images/card-7@2x.png 2x">
+                                <img src="images/card-7.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_app" id="app">
+            <div class="app">
+                <div class="app__head">
+                    <h2 class="app__title">Мобильное приложение</h2>
+                    <p>Стильное и&nbsp;удобное мобильное приложение. Возможность заказа и&nbsp;оплаты товаров.
+                        Информирование о&nbsp;новинках и&nbsp;акциях. Актуальный баланс баллов и&nbsp;история
+                        покупок.</p>
+                </div>
+                <div class="app__wrapper" data-wrap-slider>
+                    <div class="app__inner slider-mobile">
+                        <div class="app__item">
+                            <picture>
+                                <source media="(min-width: 1440px)"
+                                    srcset="images/app-1.png 1x, images/app-1@2x.png 2x">
+                                <source media="(min-width: 768px)"
+                                    srcset="images/app-1-md.png 1x, images/app-1-md@2x.png 2x">
+                                <source srcset="images/app-1-sm.png 1x, images/app-1-sm@2x.png 2x">
+                                <img src="images/app-1.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="app__item">
+                            <picture>
+                                <source media="(min-width: 1440px)"
+                                    srcset="images/app-2.png 1x, images/app-2@2x.png 2x">
+                                <source media="(min-width: 768px)"
+                                    srcset="images/app-2-md.png 1x, images/app-2-md@2x.png 2x">
+                                <source srcset="images/app-2-sm.png 1x, images/app-2-sm@2x.png 2x">
+                                <img src="images/app-2.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="app__item">
+                            <picture>
+                                <source media="(min-width: 1440px)"
+                                    srcset="images/app-3.png 1x, images/app-3@2x.png 2x">
+                                <source media="(min-width: 768px)"
+                                    srcset="images/app-3-md.png 1x, images/app-3-md@2x.png 2x">
+                                <source srcset="images/app-3-sm.png 1x, images/app-3-sm@2x.png 2x">
+                                <img src="images/app-3.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="app__item">
+                            <picture>
+                                <source media="(min-width: 1440px)"
+                                    srcset="images/app-4.png 1x, images/app-4@2x.png 2x">
+                                <source media="(min-width: 768px)"
+                                    srcset="images/app-4-md.png 1x, images/app-4-md@2x.png 2x">
+                                <source srcset="images/app-4-sm.png 1x, images/app-4-sm@2x.png 2x">
+                                <img src="images/app-4.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="app__item">
+                            <picture>
+                                <source media="(min-width: 1440px)"
+                                    srcset="images/app-5.png 1x, images/app-5@2x.png 2x">
+                                <source media="(min-width: 768px)"
+                                    srcset="images/app-5-md.png 1x, images/app-5-md@2x.png 2x">
+                                <source srcset="images/app-5-sm.png 1x, images/app-5-sm@2x.png 2x">
+                                <img src="images/app-5.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                        <div class="app__item">
+                            <picture>
+                                <source media="(min-width: 1440px)"
+                                    srcset="images/app-6.png 1x, images/app-6@2x.png 2x">
+                                <source media="(min-width: 768px)"
+                                    srcset="images/app-6-md.png 1x, images/app-6-md@2x.png 2x">
+                                <source srcset="images/app-6-sm.png 1x, images/app-6-sm@2x.png 2x">
+                                <img src="images/app-6.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_cabinet">
+            <div class="cabinet">
+                <div class="cabinet__head">
+                    <h2 class="cabinet__title">Личный кабинет клиента</h2>
+                    <p>Новинки и&nbsp;акции, накопленные баллы, история покупок, график работы
+                        магазинов&nbsp;&mdash; все в&nbsp;удобном личном кабинете, брендированном в&nbsp;вашем&nbsp;фирменном стиле.</p>
+                </div>
+                <div class="cabinet__image">
+                    <picture>
+                        <source media="(min-width: 768px)" srcset="images/lk.png 1x, images/lk@2x.png 2x">
+                        <source srcset="images/lk-sm.png 1x, images/lk-sm@2x.png 2x">
+                        <img src="images/lk.png" alt="Два модуля в камере">
+                    </picture>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_analytics scroll-block2">
+            <div class="analytics">
+                <div class="analytics__head">
+                    <h2 class="analytics__title">Аналитика</h2>
+                </div>
+                <div class="analytics__inner">
+                    <div class="analytics__row row4">
+                        <div class="analytics__item analytics__item_false"></div>
+                        <div class="analytics__item analytics__item_stat">
+                            <div class="analytics__item-wrap">
+                                <h3 class="analytics__subtitle analytics__subtitle_1">Клиенты</h3>
+                            </div>
+                        </div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_1.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-1.png 1x, images/analytics/a-1@2x.png 2x">
+                                    <img src="images/analytics/a-1.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Динамика регистраций в&nbsp;программе лояльности</p>
+                        </div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_2.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-2.png 1x, images/analytics/a-2@2x.png 2x">
+                                    <img src="images/analytics/a-2.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Регистрации в&nbsp;разрезе магазинов</p>
+                        </div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_3.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-3.png 1x, images/analytics/a-3@2x.png 2x">
+                                    <img src="images/analytics/a-3.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Регистрации в&nbsp;разрезе каналов привлечения</p>
+                        </div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_4.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-4.png 1x, images/analytics/a-4@2x.png 2x">
+                                    <img src="images/analytics/a-4.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Анализ и&nbsp;динамика уровней карты клиентов</p>
+                        </div>
+                        <div class="analytics__item analytics__item_false"></div>
+                    </div>
+                    <div class="analytics__row row5">
+                        <div class="analytics__item analytics__item_false"></div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_5.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-5.png 1x, images/analytics/a-5@2x.png 2x">
+                                    <img src="images/analytics/a-5.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Продажи товаров по&nbsp;магазинам</p>
+                        </div>
+                        <div class="analytics__item analytics__item_stat">
+                            <div class="analytics__item-wrap">
+                                <h3 class="analytics__subtitle analytics__subtitle_2">Продажи</h3>
+                            </div>
+                        </div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_6.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-6.png 1x, images/analytics/a-6@2x.png 2x">
+                                    <img src="images/analytics/a-6.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Продажи в&nbsp;разрезе сегментов покупателей</p>
+                        </div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_7.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-7.png 1x, images/analytics/a-7@2x.png 2x">
+                                    <img src="images/analytics/a-7.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Продажи в&nbsp;разрезе примененных скидок</p>
+                        </div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_8.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-8.png 1x, images/analytics/a-8@2x.png 2x">
+                                    <img src="images/analytics/a-8.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Продажи в&nbsp;разрезе каналов регистрации</p>
+                        </div>
+                        <div class="analytics__item analytics__item_false"></div>
+                    </div>
+                    <div class="analytics__row row6">
+                        <div class="analytics__item analytics__item_false"></div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_9.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-9.png 1x, images/analytics/a-9@2x.png 2x">
+                                    <img src="images/analytics/a-9.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Динамика в&nbsp;разрезе принявших участие</p>
+                        </div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_10.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-10.png 1x, images/analytics/a-10@2x.png 2x">
+                                    <img src="images/analytics/a-10.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Динамика в&nbsp;разрезе количества продаж</p>
+                        </div>
+                        <div class="analytics__item analytics__item_stat">
+                            <div class="analytics__item-wrap">
+                                <h3 class="analytics__subtitle analytics__subtitle_3">Лояльность</h3>
+                            </div>
+                        </div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_11.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-11.png 1x, images/analytics/a-11@2x.png 2x">
+                                    <img src="images/analytics/a-11.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Динамика в&nbsp;разрезе использования бонусов</p>
+                        </div>
+                        <div class="analytics__item">
+                            <div class="analytics__icon">
+                                <!-- <img src="images/analytics/anlt_12.svg" alt="Дисконтная"> -->
+                                <picture>
+                                    <source srcset="images/analytics/a-12.png 1x, images/analytics/a-12@2x.png 2x">
+                                    <img src="images/analytics/a-12.png" alt="Качественное изображение">
+                                </picture>
+                            </div>
+                            <p class="analytics__text">Динамика в&nbsp;разрезе уровней карт</p>
+                        </div>
+                        <div class="analytics__item analytics__item_false"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_choose">
+            <h2 class="choose__title">Почему нас выбирают</h2>
+            <ol class="choose__list">
+                <li class="choose__list-item">
+                    <figure>
+                        <picture class="choose__item-image">
+                            <source media="(min-width: 1440px)" srcset="images/choose-1_1.svg">
+                            <source media="(min-width: 1250px)" srcset="images/choose-1_1-lg.svg">
+                            <source media="(min-width: 768px)" srcset="images/choose-1-md.svg">
+                            <source srcset="images/choose-1-sm.svg">
+                            <img src="images/choose-1-sm.svg" alt="Видеонаблюдение под ключ">
+                        </picture>
+                        <figcaption class="choose__item-title">
+                            Создание программы лояльности
+                        </figcaption>
+                        <p class="choose__item-text">Поможем разработать работающую программу лояльности.
+                            Проанализируем рынок, конкурентов и&nbsp;клиентскую базу. Подготовим стратегию
+                            и&nbsp;рассчитаем финансовую модель. И, конечно, поможем с&nbsp;привлечением.</p>
+                    </figure>
+                </li>
+                <li class="choose__list-item">
+                    <figure>
+                        <picture class="choose__item-image">
+                            <source media="(min-width: 1440px)"
+                                srcset="images/choose-2.png 1x, images/choose-2@2x.png 2x">
+                            <source media="(min-width: 1250px)"
+                                srcset="images/choose-2-lg.png 1x, images/choose-2-lg@2x.png 2x">
+                            <source media="(min-width: 768px)"
+                                srcset="images/choose-2-md.png 1x, images/choose-2-md@2x.png 2x">
+                            <source srcset="images/choose-2-sm.png 1x, images/choose-2-sm@2x.png 2x">
+                            <img src="images/choose-2.png" alt="Складские запасы">
+                        </picture>
+                        <figcaption class="choose__item-title">
+                            Дружелюбная команда заботы
+                        </figcaption>
+                        <p class="choose__item-text">Общаемся с&nbsp;клиентами в&nbsp;любом удобном канале:
+                            по&nbsp;телефону, почте или&nbsp;в&nbsp;мессенджерах. Всегда&nbsp;поможем настроить механики
+                            или&nbsp;акции. И&nbsp;никаких чат-&#8288;ботов&nbsp;&mdash; только живые люди :-)</p>
+                    </figure>
+                </li>
+                <li class="choose__list-item choose__list-item_row">
+                    <figure>
+                        <picture class="choose__item-image">
+                            <source media="(min-width: 1440px)"
+                                srcset="images/choose-3.png 1x, images/choose-3@2x.png 2x">
+                            <source media="(min-width: 1250px)"
+                                srcset="images/choose-3-lg.png 1x, images/choose-3-lg@2x.png 2x">
+                            <source media="(min-width: 768px)"
+                                srcset="images/choose-3-md.png 1x, images/choose-3-md@2x.png 2x">
+                            <source srcset="images/choose-3-sm.png 1x, images/choose-3-sm@2x.png 2x">
+                            <img src="images/choose-3.png" alt="Складские запасы">
+                        </picture>
+                        <div class="choose__list-wrapper">
+                            <figcaption class="choose__item-title">
+                                Удобный интерфейс
+                            </figcaption>
+                            <p class="choose__item-text">Создали простой и&nbsp;удобный интерфейс, который легко
+                                освоить без обучения и&nbsp;инструкций. Это&nbsp;позволяет быстро разобраться
+                                в&nbsp;платформе и&nbsp;запустить первые акции.</p>
+                        </div>
+                    </figure>
+                </li>
+                <li class="choose__list-item choose__list-item_row">
+                    <figure>
+                        <!-- <picture class="choose__item-image">
+                            <source media="(min-width: 1440px)" srcset="images/choose-4.svg">
+                            <source media="(min-width: 1250px)" srcset="images/choose-4-lg.svg">
+                            <source media="(min-width: 768px)" srcset="images/choose-4-md.svg">
+                            <source srcset="images/choose-4-sm.svg">
+                            <img src="images/choose-4-sm.svg" alt="Гарантийное сопровождение видеокамер">
+                        </picture> -->
+                        <picture class="choose__item-image">
+                            <source media="(min-width: 1440px)"
+                                srcset="images/choose-4.png 1x, images/choose-4@2x.png 2x">
+                            <source media="(min-width: 1250px)"
+                                srcset="images/choose-4-lg.png 1x, images/choose-4-lg@2x.png 2x">
+                            <source media="(min-width: 768px)"
+                                srcset="images/choose-4-md.png 1x, images/choose-4-md@2x.png 2x">
+                            <source srcset="images/choose-4-sm.png 1x, images/choose-4-sm@2x.png 2x">
+                            <img src="images/choose-4.png" alt="Два модуля в камере">
+                        </picture>
+                        <div class="choose__list-wrapper">
+                            <figcaption class="choose__item-title">
+                                Интеграция с&nbsp;популярными системами
+                            </figcaption>
+                            <p class="choose__item-text">Решение интегрируется с&nbsp;популярными учетными
+                                системами,
+                                BI-&#8288;системами и&nbsp;сайтами. Если нет интеграции с&nbsp;вашей
+                                системой&nbsp;&mdash; предоставим удобные SDK&nbsp;и&nbsp;API или&nbsp;поможем
+                                с&nbsp;интеграцией силами своих&nbsp;разработчиков.</p>
+                        </div>
+                    </figure>
+                </li>
+            </ol>
+        </section>
+
+        <section class="section section_calc">
+            <div class="s-prices" id="calc">
+                <h2 class="title">Стоимость</h2>
+                <div class="s-prices__block">
+                    <div class="s-prices__col">
+                        <div class="s-prices__item">
+                            <h3 class="subtitle">
+                                <!-- <img src="images/cdp-icon.svg" alt=""> -->
+                                <picture class="s-prices__icon">
+                                    <source srcset="images/calc/cdp.png 1x, images/calc/cdp@2x.png 2x">
+                                    <img src="images/calc/cdp.png" alt="Качественное изображение">
+                                </picture>
+                                <span>CDP + Программа лояльности</span>
+                            </h3>
+                            <p class="text s-prices__text">
+                                Клиентская база, сегментация, сценарии, бонусы, скидки, акции, подарочные карты,
+                                реферальная программа
+                            </p>
+                            <div class="s-prices__range">
+                                <h2 class="title s-prices__range-count" id="count-users">5&nbsp;000</h2>
+                                <div class="s-prices__range-slider">
+                                    <div class="s-prices__range-input" id="users-range-slider"></div>
+                                </div>
+                                <div class="s-prices__range-count">
+                                    <span class="text">5&nbsp;000</span>
+                                    <span class="text">1&nbsp;000&nbsp;000</span>
+                                </div>
+                            </div>
+                            <input type="number" class="s-prices__input" min="5000" max="1000000" step="5000"
+                                id="count-users-input" value="5000">
+                        </div>
+
+                        <div class="s-prices__item">
+                            <h3 class="subtitle">
+                                <!-- <img src="images/mailer-icon.svg" alt=""> -->
+                                <picture class="s-prices__icon">
+                                    <source srcset="images/calc/mail.png 1x, images/calc/mail@2x.png 2x">
+                                    <img src="images/calc/mail.png" alt="Качественное изображение">
+                                </picture>
+                                <span>Рассылки</span>
+                            </h3>
+                            <p class="text s-prices__text">
+                                Отправка рекламных и&nbsp;сервисных сообщений
+                            </p>
+                            <div class="s-prices__push">
+                                <div class="s-prices__push-item wrapper">
+                                    <input type="checkbox" class="checkbox" data-type="push" id="checkPush">
+                                    <label for="checkPush" class="wrapper-label">
+                                        <span class="wrapper-label--text wrapper-label--text_hidden">Пуши</span>
+                                        <span id="push-price"
+                                            class="wrapper-label--text wrapper-label--text_mobile">0&nbsp;₽</span>
+                                    </label>
+                                    <span class="wrapper-label--text wrapper-label--text_mobile">Пуши</span>
+                                </div>
+                                <div class="s-prices__push-item wrapper">
+                                    <input type="checkbox" class="checkbox" data-type="sms" id="checkSms">
+                                    <label for="checkSms" class="wrapper-label">
+                                        <span class="wrapper-label--text wrapper-label--text_hidden">СМС</span>
+                                        <span id="sms-price"
+                                            class="wrapper-label--text wrapper-label--text_mobile">0&nbsp;₽</span>
+                                    </label>
+                                    <span class="wrapper-label--text wrapper-label--text_mobile">СМС</span>
+                                </div>
+                                <div class="s-prices__push-item wrapper">
+                                    <input type="checkbox" class="checkbox" data-type="email" id="checkEmail">
+                                    <label for="checkEmail" class="wrapper-label">
+                                        <span class="wrapper-label--text wrapper-label--text_hidden">Почта</span>
+                                        <span id="email-price"
+                                            class="wrapper-label--text wrapper-label--text_mobile">0&nbsp;₽</span>
+                                    </label>
+                                    <span class="wrapper-label--text wrapper-label--text_mobile">Почта</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-prices__item">
+                            <h3 class="subtitle">
+                                <!-- <img src="images/chat-icon.svg" alt=""> -->
+                                <picture class="s-prices__icon">
+                                    <source srcset="images/calc/bot.png 1x, images/calc/bot@2x.png 2x">
+                                    <img src="images/calc/bot.png" alt="Качественное изображение">
+                                </picture>
+                                <span>Чат-&#8288;бот в&nbsp;Telegram</span>
+                            </h3>
+                            <p class="text s-prices__text s-prices__text_cards">
+                                Регистрация в&nbsp;программе лояльности, информирование, актуальный баланс баллов
+                            </p>
+                            <div class="s-prices__options">
+                                <div class="s-prices__options-item wrapper">
+                                    <input type="checkbox" class="checkbox" data-type="telegrambot"
+                                        id="checkTelegramBot">
+                                    <label for="checkTelegramBot" class="wrapper-label">
+                                        <span
+                                            class="wrapper-label--text wrapper-label--text_hidden">Чат-&#8288;бот</span>
+                                        <span id="telegrambot-price"
+                                            class="wrapper-label--text wrapper-label--text_mobile">0&nbsp;₽</span>
+                                    </label>
+                                    <span
+                                        class="wrapper-label--text wrapper-label--text_mobile">Чат-&#8288;бот</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-prices__item">
+                            <h3 class="subtitle">
+                                <!-- <img src="images/card-icon.svg" alt=""> -->
+                                <picture class="s-prices__icon">
+                                    <source srcset="images/calc/cards.png 1x, images/calc/cards@2x.png 2x">
+                                    <img src="images/calc/cards.png" alt="Качественное изображение">
+                                </picture>
+                                <span>Электронные карты</span>
+                            </h3>
+                            <p class="text s-prices__text s-prices__text_cards">
+                                Карты Apple Wallet и&nbsp;Google Pay. Отличная замена пластику.
+                            </p>
+                            <div class="s-prices__options">
+                                <div class="s-prices__options-item wrapper">
+                                    <input type="checkbox" class="checkbox" data-type="cards" id="checkCards">
+                                    <label for="checkCards" class="wrapper-label">
+                                        <span class="wrapper-label--text wrapper-label--text_hidden">Электронные
+                                            карты</span>
+                                        <span id="cards-price"
+                                            class="wrapper-label--text wrapper-label--text_mobile">0&nbsp;₽</span>
+                                    </label>
+                                    <span class="wrapper-label--text wrapper-label--text_mobile">Электронные
+                                        карты</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-prices__item">
+                            <h3 class="subtitle">
+                                <!-- <img src="images/app-icon.svg" alt=""> -->
+                                <picture class="s-prices__icon">
+                                    <source srcset="images/calc/mob-app.png 1x, images/calc/mob-app@2x.png 2x">
+                                    <img src="images/calc/mob-app.png" alt="Качественное изображение">
+                                </picture>
+                                <span>Мобильное приложение</span>
+                            </h3>
+                            <p class="text s-prices__text">
+                                Заказ и&nbsp;оплата товаров, информирование, актуальный баланс баллов, история
+                                покупок
+                            </p>
+                            <div class="s-prices__options">
+                                <div class="s-prices__options-item wrapper">
+                                    <input type="checkbox" class="checkbox" id="checkApp" data-type="app">
+                                    <label for="checkApp" class="wrapper-label">
+                                        <span class="wrapper-label--text wrapper-label--text_hidden">Мобильное
+                                            приложение</span>
+                                        <span id="app-price"
+                                            class="wrapper-label--text wrapper-label--text_mobile">0&nbsp;₽</span>
+                                    </label>
+                                    <span class="wrapper-label--text wrapper-label--text_mobile">Мобильное
+                                        приложение</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-prices__item">
+                            <h3 class="subtitle">
+                                <!-- <img src="images/lk-icon.svg" alt=""> -->
+                                <picture class="s-prices__icon">
+                                    <source srcset="images/calc/lk.png 1x, images/calc/lk@2x.png 2x">
+                                    <img src="images/calc/lk.png" alt="Качественное изображение">
+                                </picture>
+                                <span>Личный кабинет клиента</span>
+                            </h3>
+                            <p class="text s-prices__text">
+                                Стильный и&nbsp;удобный личный кабинет клиента, оформленный в&nbsp;ваши фирменные
+                                цвета
+                            </p>
+                            <div class="s-prices__options">
+                                <div class="s-prices__options-item wrapper">
+                                    <input type="checkbox" class="checkbox" id="checkCabinet" data-type="cabinet">
+                                    <label for="checkCabinet" class="wrapper-label">
+                                        <span class="wrapper-label--text wrapper-label--text_hidden">Личный
+                                            кабинет</span>
+                                        <span id="cabinet-price"
+                                            class="wrapper-label--text wrapper-label--text_mobile">0&nbsp;₽</span>
+                                    </label>
+                                    <span class="wrapper-label--text wrapper-label--text_mobile">Личный
+                                        кабинет</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s-prices__col s-prices__col_check">
+                        <div class="s-prices__additionally">
+                            <p class="text">Поддержка в&nbsp;мессенджерах, по&nbsp;телефону и&nbsp;почте</p>
+                            <p class="text">3&nbsp;пользователя личного кабинета <span class="disclaimer">?
+                                    <span class="disclaimer__hint">С&nbsp;4&nbsp;пользователя: +450 руб./мес.
+                                        <span class="disclaimer__triangle"></span>
+                                    </span>
+                                </span></p>
+                            <p class="text">Бесплатные обновления функционала</p>
+                            <p class="text">Неограниченное хранение данных</p>
+                        </div>
+                        <div class="s-prices__info" id="result-info">
+                            <div class="s-prices__info-item">
+                                <h3 class="subtitle s-prices__info-subtitle">Программа лояльности</h3>
+                                <p class="text">15&nbsp;000 руб./мес.</p>
+                            </div>
+                        </div>
+                        <div class="sticky-price">
+                            <h3 class="subtitle">Стоимость</h3>
+                            <h2 class="title s-prices__number" id="result">15 000 р./мес.</h2>
+                            <button type="button" class="button button_action s-prices__button" data-toggle="modal"
+                                data-target="#f-retail-bonus" id="calc-button"
+                                data-event="<?= WebAnalytics::getEventCode('calc-order-btn') ?>">
+                                Оставить заявку
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_about">
+            <div class="about">
+                <h2 class="about__title">О&nbsp;нас в&nbsp;цифрах</h2>
+                <div class="about__block">
+                    <div class="count">
+                        <picture class="count__image count__image_top">
+                            <source media="(min-width: 1440px)" srcset="images/about/about-1.svg">
+                            <source media="(min-width: 1250px)" srcset="images/about/about-1-lg.svg">
+                            <source media="(min-width: 768px)" srcset="images/about/about-1-md.svg">
+                            <source srcset="images/about/about-1-sm.svg">
+                            <img src="images/about/about-1.svg" alt="12000000">
+                        </picture>
+                        <p class="count__text">клиентов программы лояльности</p>
+                    </div>
+                    <div class="count">
+                        <picture class="count__image">
+                            <source media="(min-width: 1440px)" srcset="images/about/about-2.svg">
+                            <source media="(min-width: 1250px)" srcset="images/about/about-2-lg.svg">
+                            <source media="(min-width: 768px)" srcset="images/about/about-2-md.svg">
+                            <source srcset="images/about/about-2-sm.svg">
+                            <img src="images/about/about-2.svg" alt="12000000">
+                        </picture>
+                        <p class="count__text">подключенных торговых точек</p>
+                    </div>
+                    <div class="count">
+                        <picture class="count__image">
+                            <source media="(min-width: 1440px)" srcset="images/about/about-3.svg">
+                            <source media="(min-width: 1250px)" srcset="images/about/about-3-lg.svg">
+                            <source media="(min-width: 768px)" srcset="images/about/about-3-md.svg">
+                            <source srcset="images/about/about-3-sm.svg">
+                            <img src="images/about/about-3.svg" alt="12000000">
+                        </picture>
+                        <p class="count__text">регионов России</p>
+                    </div>
+                    <div class="count">
+                        <picture class="count__image">
+                            <source media="(min-width: 1440px)" srcset="images/about/about-4.svg">
+                            <source media="(min-width: 1250px)" srcset="images/about/about-4-lg.svg">
+                            <source media="(min-width: 768px)" srcset="images/about/about-4-md.svg">
+                            <source srcset="images/about/about-4-sm.svg">
+                            <img src="images/about/about-4.svg" alt="12000000">
+                        </picture>
+                        <p class="count__text">лет занимаемся автоматизацией программ лояльности</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_reviews">
+            <div class="reviews">
+                <h2 class="reviews__title">Кейсы</h2>
+                <div class="reviews__inner">
+                    <div class="reviews__item">
+                        <div class="reviews__item-video">
+                            <div class="video-list" data-videoembedded="2jKkz6yPpic"></div>
+                        </div>
+                        <h3 class="reviews__item-title">Move запустили программу лояльности с&nbsp;нуля</h3>
+                        <p class="reviews__item-text">Сеть магазинов одежды. Нарастили клиентскую базу
+                            с&nbsp;0&nbsp;до&nbsp;4000&nbsp;участников и&nbsp;снизили загруженность маркетологов.</p>
+                        <a href="/bonus/kak-magaziny-move-avtomatizirovali-programmu-loyalnosti/" target="_blank" class="reviews__item-link">
+                            <span>Подробнее</span>
+                            <img src="images/arrow-link.svg" alt="">
+                        </a>
+                    </div>
+                    <div class="reviews__item">
+                        <div class="reviews__item-video">
+                            <div class="video-list" data-videoembedded="bw2yX_sB6GY"></div>
+                        </div>
+                        <h3 class="reviews__item-title">Канистра объединили программу лояльности в&nbsp;магазинах
+                            и&nbsp;СТО</h3>
+                        <p class="reviews__item-text">Сеть магазинов автотоваров и&nbsp;СТО. С&nbsp;помощью
+                            платформы
+                            объединили программу лояльности для&nbsp;сети магазинов и&nbsp;станций техобслуживания.
+                        </p>
+                        <a href="/bonus/magaziny-avtotovarov-kanistra-razvivayut-programmu-loyalnosti-s-pomoshchyu-platformy-1c-rarus/" target="_blank" class="reviews__item-link">
+                            <span>Подробнее</span>
+                            <img src="images/arrow-link.svg" alt="">
+                        </a>
+                    </div>
+                    <div class="reviews__item">
+                        <div class="reviews__item-video">
+                            <div class="video-list" data-videoembedded="3GuhLvf3Enw"></div>
+                        </div>
+                        <h3 class="reviews__item-title">Сантехника Мауро увеличили базу клиентов на&nbsp;43%</h3>
+                        <p class="reviews__item-text">Сеть магазинов сантехники. Запустили на&nbsp;платформе
+                            Телеграм-&#8288;бота, благодаря которому&nbsp;клиентская база выросла на&nbsp;43%
+                            за&nbsp;полгода.</p>
+                        <a href="/bonus/kak-magaziny-santexnika-mauro-uvelichili-klientskuyu-bazu-s-sistemoy-loyalnosti-1c-rarus/" target="_blank" class="reviews__item-link">
+                            <span>Подробнее</span>
+                            <img src="images/arrow-link.svg" alt="">
+                        </a>
+                    </div>
+                    <div class="reviews__item">
+                        <div class="reviews__item-video">
+                            <div class="video-list" data-videoembedded="tm4bWqtdOG4"></div>
+                        </div>
+                        <h3 class="reviews__item-title">Русклимат построили программу лояльности в&nbsp;B2B</h3>
+                        <p class="reviews__item-text">Сеть магазинов климатической техники. Запустили омниканальную
+                            программу лояльности для&nbsp;монтажных организаций и&nbsp;партнерских магазинов.</p>
+                        <a href="/bonus/kak-rusklimat-stroit-omnikanalnuyu-programmu-loyalnosti-v-b2b/" target="_blank" class="reviews__item-link">
+                            <span>Подробнее</span>
+                            <img src="images/arrow-link.svg" alt="">
+                        </a>
+                    </div>
+                    <div class="reviews__item">
+                        <div class="reviews__item-video">
+                            <div class="video-list" data-videoembedded="pgJvtmmRWW4"></div>
+                        </div>
+                        <h3 class="reviews__item-title">Бергамот и&nbsp;Корица увеличили средний чек на&nbsp;15%
+                        </h3>
+                        <p class="reviews__item-text">Сеть магазинов чая и&nbsp;кофе. С&nbsp;помощью запуска
+                            бонусной
+                            программы лояльности и&nbsp;сегментации клиентской базы увеличили средний чек
+                            на&nbsp;15%.</p>
+                        <a href="/bonus/kak-magaziny-bergamot-i-korica-uvelichili-sredniy-chek-s-sistemoy-loyalnosti-1c-rarus/" target="_blank" class="reviews__item-link">
+                            <span>Подробнее</span>
+                            <img src="images/arrow-link.svg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section_footer" data-animate-4>
+            <div class="section-footer">
+                <div class="section-footer__wrap">
+                    <h2 class="footer__title">Демонстрация платформы</h2>
+                    <p class="footer__description">
+                        Покажем вам возможности платформы: кабинет маркетолога, мобильное приложение и&nbsp;личный
+                        кабинет клиента, дадим пообщаться с&nbsp;чат-&#8288;ботом в&nbsp;Telegram. Ответим&nbsp;на&nbsp;ваши вопросы.
+                    </p>
+                    <button class="button button_action footer__button" data-toggle="modal"
+                        data-event="rarus-ru_1c-net_audit-it-sistem-1c_footer-callback"
+                        data-product="Аудит ИТ‑систем для 1С" data-target="#f-audit-it-system-1c">Оставить
+                        заявку</button>
+                </div>
+                <div class="section-footer__image">
+                    <div class="section-footer__image-wrap">
+                        <picture>
+                            <source media="(min-width: 1250px)" srcset="images/footer-heart.svg">
+                            <source media="(min-width: 768px)" srcset="images/footer-heart-md.svg">
+                            <source srcset="images/footer-heart-sm.svg">
+                            <img src="images/footer-heart.svg" alt="12000000">
+                        </picture>
+
+                        <div class="section-footer__icon section-footer__icon_1">
+                            <!-- <picture>
+                                <source media="(min-width: 1250px)" srcset="images/footer-tg.svg">
+                                <source media="(min-width: 768px)" srcset="images/footer-tg-md.svg">
+                                <source srcset="images/footer-tg-sm.svg">
+                                <img src="images/footer-tg.svg" alt="12000000">
+                            </picture> -->
+
+                            <picture>
+                                <source media="(min-width: 1250px)"
+                                    srcset="images/footer-icon-1.png 1x, images/footer-icon-1@2x.png 2x">
+                                <source media="(min-width: 768px)"
+                                    srcset="images/footer-icon-1-md.png 1x, images/footer-icon-1-md@2x.png 2x">
+                                <source srcset="images/footer-icon-1-sm.png 1x, images/footer-icon-1-sm@2x.png 2x">
+                                <img src="images/footer-icon-1.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+
+                        <div class="section-footer__icon section-footer__icon_2">
+                            <!-- <picture>
+                                <source media="(min-width: 1250px)" srcset="images/footer-note.svg">
+                                <source media="(min-width: 768px)" srcset="images/footer-note-md.svg">
+                                <source srcset="images/footer-note-sm.svg">
+                                <img src="images/footer-note.svg" alt="12000000">
+                            </picture> -->
+
+                            <picture>
+                                <source media="(min-width: 1250px)"
+                                    srcset="images/footer-icon-2.png 1x, images/footer-icon-2@2x.png 2x">
+                                <source media="(min-width: 768px)"
+                                    srcset="images/footer-icon-2-md.png 1x, images/footer-icon-2-md@2x.png 2x">
+                                <source srcset="images/footer-icon-2-sm.png 1x, images/footer-icon-2-sm@2x.png 2x">
+                                <img src="images/footer-icon-2.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+
+                        <div class="section-footer__icon section-footer__icon_3">
+                            <!-- <picture>
+                                <source media="(min-width: 1250px)" srcset="images/footer-app.svg">
+                                <source media="(min-width: 768px)" srcset="images/footer-app-md.svg">
+                                <source srcset="images/footer-app-sm.svg">
+                                <img src="images/footer-app.svg" alt="12000000">
+                            </picture> -->
+
+                            <picture>
+                                <source media="(min-width: 1250px)"
+                                    srcset="images/footer-icon-3.png 1x, images/footer-icon-3@2x.png 2x">
+                                <source media="(min-width: 768px)"
+                                    srcset="images/footer-icon-3-md.png 1x, images/footer-icon-3-md@2x.png 2x">
+                                <source srcset="images/footer-icon-3-sm.png 1x, images/footer-icon-3-sm@2x.png 2x">
+                                <img src="images/footer-icon-3.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+
+                        <div class="section-footer__icon section-footer__icon_4">
+                            <!-- <picture>
+                                <source media="(min-width: 1250px)" srcset="images/footer-person.svg">
+                                <source media="(min-width: 768px)" srcset="images/footer-person-md.svg">
+                                <source srcset="images/footer-person-sm.svg">
+                                <img src="images/footer-person.svg" alt="12000000">
+                            </picture> -->
+
+                            <picture>
+                                <source media="(min-width: 1250px)"
+                                    srcset="images/footer-icon-4.png 1x, images/footer-icon-4@2x.png 2x">
+                                <source media="(min-width: 768px)"
+                                    srcset="images/footer-icon-4-md.png 1x, images/footer-icon-4-md@2x.png 2x">
+                                <source srcset="images/footer-icon-4-sm.png 1x, images/footer-icon-4-sm@2x.png 2x">
+                                <img src="images/footer-icon-4.png" alt="Два модуля в камере">
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>
+
+
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . '/bitrix/footer.php';

@@ -1,0 +1,86 @@
+@use 'vars' as *;
+
+@mixin xs {
+    @media screen and (max-width: #{$sm-cutoff - 0.02}px) {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media screen and (max-width: #{$sm-breakpoint - 0.02}px) {
+        @content;
+    }
+}
+@mixin md {
+    @media screen and (min-width: #{$sm-breakpoint}px) and (max-width: #{$md-breakpoint - 0.02}px) {
+        @content;
+    }
+}
+@mixin lg {
+    @media screen and (min-width: #{$md-breakpoint}px) and (max-width: #{$lg-breakpoint - 0.02}px) {
+        @content;
+    }
+}
+@mixin xl {
+    @media screen and (min-width: #{$lg-breakpoint}px) {
+        @content;
+    }
+}
+
+@mixin md-and-up {
+    @media screen and (min-width: #{$sm-breakpoint}px) {
+        @content;
+    }
+}
+@mixin md-and-down {
+    @media screen and (max-width: #{$md-breakpoint - 0.02}px) {
+        @content;
+    }
+}
+
+@mixin lg-and-up {
+    @media screen and (min-width: #{$md-breakpoint}px) {
+        @content;
+    }
+}
+@mixin lg-and-down {
+    @media screen and (max-width: #{$lg-breakpoint - 0.02}px) {
+        @content;
+    }
+}
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: woff2 woff ttf) {
+    $src: null;
+
+    @each $ext in $exts {
+        $format: if($ext == 'ttf', 'truetype', $ext);
+        $src: append($src, url(quote($path + '.' + $ext)) format(quote($format)), comma);
+    }
+
+    @font-face {
+        font-family: quote($name);
+        font-weight: $weight;
+        font-style: $style;
+        font-display: swap;
+        src: $src;
+    }
+}
+
+@mixin transition($prop, $time: $transition-duration, $easing: $transition-timing-function, $delay: 0s, $important: false) {
+    $transition: ();
+    @for $i from 1 through length($prop) {
+        @for $j from 0 to (length($prop)) - (length($time)) {
+            $time: join($time, nth($time, -1));
+        }
+        @for $j from 0 to (length($prop)) - (length($easing)) {
+            $easing: join($easing, nth($easing, -1));
+        }
+        @for $j from 0 to (length($prop)) - (length($delay)) {
+            $delay: join($delay, nth($delay, -1));
+        }
+
+        $transition: append($transition, (nth($prop, $i) nth($time, $i) nth($easing, $i) nth($delay, $i)), $separator: comma);
+    }
+
+    transition: $transition;
+}

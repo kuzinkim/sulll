@@ -1,0 +1,248 @@
+@use '../vars' as *;
+@use '../mixins' as *;
+
+.root-wrapper section.section_analytics {
+    overflow: hidden;
+    background:
+        linear-gradient(0deg, rgba(243, 250, 255, 0) 89.77%, #F3FAFF 100%),
+        linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+        radial-gradient(96.51% 148.8% at -7.45% 110.67%, #9ac7ff 0%, rgba(200, 155, 253, 0.8) 45.17%, rgba(200, 155, 253, 0) 100%),
+        radial-gradient(73.54% 103.79% at 69.97% 100%, #98eb6c 0%, #fed06f 45.17%, rgba(254, 208, 111, 0) 100%),
+        radial-gradient(19.04% 44.15% at 33.39% 62.02%, rgba(252, 120, 194, 0.4) 0%, rgba(252, 121, 194, 0) 100%);
+
+    @include md-and-down {
+        padding: 0 var(--page-padding);
+        overflow: visible;
+    }
+
+    .analytics {
+        padding-top: 120px;
+        padding-bottom: 120px;
+
+        @include md-and-down {
+            padding-top: 0;
+            padding-bottom: 72px;
+            position: relative;
+        }
+
+        &__head {
+            text-align: center;
+            max-width: 567px;
+            margin: 0 auto;
+
+            @include md-and-down {
+                padding-top: 72px;
+                padding-bottom: 24px;
+                position: sticky;
+                top: -39px;
+                z-index: 1;
+                max-width: 100%;
+            }
+
+            @include sm {
+                padding-top: 94px;
+                top: -64px;
+            }
+        }
+
+        &__inner {
+            margin-top: 40px;
+
+            @include md-and-down {
+                margin-top: 0;
+            }
+        }
+
+        &__row {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 32px;
+            justify-content: center;
+            will-change: transform;
+
+            @include md-and-down {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                transform: none !important;
+            }
+
+            @include sm {
+                gap: 24px;
+            }
+
+            &:not(:nth-child(1)) {
+                margin-top: 32px;
+            }
+
+            &:nth-child(1) {
+                .analytics__item_stat {
+                    background-color: #c19df7;
+
+                    @include md {
+                        width: 192px;
+                    }
+                }
+
+                .analytics__item:nth-child(3) {
+                    @include md {
+                        width: 232px;
+                    }
+                }
+
+                .analytics__item:nth-child(4) {
+                    @include md {
+                        width: 211px;
+                    }
+                }
+
+                .analytics__item:nth-child(5) {
+                    @include md {
+                        margin-left: auto;
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                .analytics__item_stat {
+                    background-color: #ffb411;
+
+                    @include md {
+                        width: 235px;
+                    }
+
+                    @include sm {
+                        order: -1;
+                    }
+                }
+
+                .analytics__item:nth-child(2) {
+                    @include md {
+                        width: 185px;
+                    }
+                }
+
+                .analytics__item:nth-child(4) {
+                    @include md {
+                        width: 216px;
+                    }
+                }
+
+                .analytics__item:nth-child(5) {
+                    @include md {
+                        width: 232px;
+                        margin-left: 54px;
+                    }
+                }
+
+                .analytics__item:nth-child(6) {
+                    @include md {
+                        width: 232px;
+                    }
+                }
+            }
+
+            &:nth-child(3) {
+                .analytics__item_stat {
+                    background-color: #eb80bf;
+
+                    @include md {
+                        width: 235px;
+                    }
+
+                    @include sm {
+                        order: -1;
+                    }
+                }
+
+                .analytics__item:nth-child(2) {
+                    @include md {
+                        width: 195px;
+                    }
+                }
+
+                .analytics__item:nth-child(3) {
+                    @include md {
+                        width: 206px;
+                    }
+                }
+
+                .analytics__item:nth-child(5) {
+                    @include md {
+                        width: 262px;
+                    }
+                }
+
+                .analytics__item:nth-child(6) {
+                    @include md {
+                        width: 262px;
+                    }
+                }
+            }
+        }
+
+        &__item {
+            padding: 30px 24px;
+            background-color: #fff;
+            border-radius: 30px;
+            flex-shrink: 0;
+            width: 304px;
+
+            @include lg {
+                width: 285px;
+                padding-left: 20px;
+                padding-right: 9px;
+                padding-top: 24px;
+                padding-bottom: 24px;
+            }
+
+            @include md-and-down {
+                padding: 20px 16px;
+            }
+
+            @include sm {
+                width: 100%;
+            }
+
+            &_stat {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+
+                @include lg {
+                    padding-right: 20px;
+                }
+
+                @include sm {
+                    padding-top: 68px;
+                    padding-bottom: 68px;
+                }
+            }
+
+            &_false {
+                @include md-and-down {
+                    display: none;
+                }
+            }
+        }
+
+        &__icon {
+            height: 68px;
+            margin-bottom: 10px;
+
+            @include md-and-down {
+                margin-bottom: 8px;
+            }
+
+            img {
+                width: auto;
+                height: 100%;
+            }
+        }
+
+        &__title {
+            margin-bottom: 6px;
+        }
+    }
+}

@@ -1,0 +1,184 @@
+@use '../vars' as *;
+@use '../mixins' as *;
+
+.root-wrapper section.section_app {
+    padding: var(--section-gap) var(--page-padding);
+
+    @include md {
+        padding-top: 0;
+    }
+
+    @include sm {
+        overflow: hidden;
+    }
+
+    .app {
+        display: flex;
+        gap: 52px;
+        position: relative;
+
+        &__wrapper{
+            flex: 1;
+        }
+
+        @include lg {
+            gap: 36px;
+        }
+
+        @include md-and-down {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        @include sm {
+            flex-direction: column-reverse;
+            gap: 30px;
+        }
+
+        &__head {
+            max-width: 416px;
+            align-self: flex-start;
+            position: sticky;
+            top: 110px;
+            padding-bottom: 280px;
+
+            @include lg {
+                max-width: 384px;
+            }
+
+            @include md {
+                top: -70px;
+                padding-top: var(--section-gap);
+                padding-bottom: 24px;
+                max-width: 100%;
+                background-color: $white;
+            }
+
+            @include sm {
+                position: static;
+                max-width: 100%;
+                padding-bottom: 0;
+            }
+        }
+
+        &__title {
+            margin-bottom: 16px;
+
+            @include md-and-down {
+                margin-bottom: 12px;
+            }
+        }
+
+        &__inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex: 1;
+            row-gap: 40px;
+
+            @include lg-and-down {
+                row-gap: 32px;
+            }
+        }
+
+        &__item {
+            width: 50%;
+            max-width: 396px;
+            align-self: flex-start;
+
+            @include lg-and-down {
+                max-width: 334px;
+            }
+
+            &:nth-child(2) {
+                margin-top: 224px;
+
+                @include lg-and-down {
+                    margin-top: 177px;
+                }
+            }
+
+            &:nth-child(odd) {
+                margin-top: -224px;
+
+                @include lg-and-down {
+                    margin-top: -177px;
+                }
+            }
+
+            &:nth-child(1) {
+                margin-top: 0;
+            }
+
+            @include sm {
+                width: 100%;
+                max-width: 100%;
+                margin-top: 0 !important;
+            }
+        }
+    }
+
+    .swiper-pagination {
+        @include md-and-up {
+            display: none;
+        }
+        position: static;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 185px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background: rgba(239, 239, 242, 0.8);
+        border-radius: 70px;
+        margin: 20px auto 0;
+    }
+
+    .swiper-pagination-bullet {
+        position: relative;
+        width: 8px;
+        height: 8px;
+        background: #A3A3A4;
+        border-radius: 50%;
+        opacity: 1;
+        overflow: hidden;
+        transform: translateZ(0);
+        transition: all 0.3s ease;
+    }
+
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        width: 40px;
+        border-radius: 12px;
+        background: rgba(51, 51, 51, 0.4);
+    }
+
+    .swiper-pagination-bullet::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #333333;
+        border-radius: 12px;
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    .swiper-pagination-bullet.is-complete{
+        background: #333333;
+    }
+
+    .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
+        animation: bullet-progress-app 3000ms linear forwards;
+    }
+
+    @keyframes bullet-progress-app {
+        0% {
+            transform: scaleX(0);
+        }
+        100% {
+            transform: scaleX(1);
+        }
+    }
+}
